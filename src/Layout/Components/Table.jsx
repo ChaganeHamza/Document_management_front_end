@@ -30,7 +30,7 @@ const Table = ({ columns, data, attributs}) => {
                             <tr key={rowIndex}>
                                 {attributs.map((attribut, attIndex) => (
                                     <td key={attIndex}
-                                        className="px-1 py-2 text-xs sm:text-sm md:text-base whitespace-nowrap">{row[attribut.toLowerCase()]}</td>
+                                        className="px-1 py-2 text-xs sm:text-sm md:text-base whitespace-nowrap">{row[attribut]}</td>
                                 ))}
                             </tr>
                         ))}

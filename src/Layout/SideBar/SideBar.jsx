@@ -1,6 +1,6 @@
 import React from "react";
 import SideBarItem from "../Components/SideBarItem";
-import { IconDashboard, IconArchive, IconLogout, IconClipboard, IconSettings, IconBell, } from '@tabler/icons-react';
+import { IconDashboard, IconShoppingCartCheck, IconShoppingCartExclamation, IconTruckDelivery, IconShoppingCart, IconArchive, IconLogout, IconClipboard, IconSettings, IconBell, } from '@tabler/icons-react';
 import logo from "./logopng.png";
 
 const SideBar = () => {
@@ -17,8 +17,28 @@ const SideBar = () => {
                 />
                 <SideBarItem
                     icon={<IconClipboard stroke={1.5}/>}
-                    text="Document"
+                    text="Documents"
                     href={'/document'}
+                />
+                <SideBarItem
+                    icon={<IconShoppingCartCheck stroke={1.5}/>}
+                    text="Commandes de vente"
+                    href={'/salesorders'}
+                />
+                <SideBarItem
+                    icon={<IconShoppingCart stroke={1.5}/>}
+                    text="Commandes d'achat"
+                    href={'/purchaseorders'}
+                />
+                <SideBarItem
+                    icon={<IconShoppingCartExclamation stroke={1.5}/>}
+                    text="Retours de vente"
+                    href={'/salesreturns'}
+                />
+                <SideBarItem
+                    icon={<IconTruckDelivery stroke={1.5}/>}
+                    text="Livraisons"
+                    href={'/deliveries'}
                 />
                 <SideBarItem
                     icon={<IconArchive stroke={1.5}/>}
@@ -27,12 +47,12 @@ const SideBar = () => {
                 />
                 <SideBarItem
                     icon={<IconBell stroke={1.5}/>}
-                    text="Alerts"
+                    text="Notifications"
                     href={'/alerts'}
                 />
                 <SideBarItem
                     icon={<IconSettings stroke={1.5}/>}
-                    text="Settings"
+                    text="Paramétres"
                     href={'/settings'}
                 />
             </div>

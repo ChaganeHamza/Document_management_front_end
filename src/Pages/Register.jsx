@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+/*import React, { useState} from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Nav from '../Layout/Components/Nav';
@@ -122,4 +122,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Register;*/

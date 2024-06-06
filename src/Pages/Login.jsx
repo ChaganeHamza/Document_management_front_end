@@ -1,4 +1,4 @@
-import axios from 'axios';
+/*import axios from 'axios';
 import React, { useState} from 'react';
 import { Navigate } from "react-router-dom";
 import Nav from '../Layout/Components/Nav';
@@ -104,3 +104,4 @@ const Login = (props) => {
 };
 
 export default Login;
+*/
