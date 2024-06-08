@@ -5,7 +5,7 @@ import Table from '../Layout/Components/Table';
 
 
 const Document = () => {
-  const columns = ['Numéro de document', ' Code du client', 'Nom du client', 'Date du document', 'DTotal du document'];
+  const columns = ['Numéro document', ' Code client', 'Nom client', 'Date document', 'Total document'];
   const attributs = ['DocNum', 'CardCode', 'CardName', 'DocDate', 'DocTotal'];
 
   const [SalesOrders, setSalesOrders] = useState([]);
