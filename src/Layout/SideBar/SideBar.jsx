@@ -77,7 +77,7 @@ const SideBar = () => {
                     className={'-bottom-0'}
                     icon={<IconLogout stroke={1.5}/>}
                     text="Logout"
-                    href={'/login'}
+                    href={'/'}
                 />
             </div>
         </div>

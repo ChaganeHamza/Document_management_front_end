@@ -17,10 +17,10 @@ const MainContent = (props) =>{
                 {props.Action ? (
                     <a
                         href={props.Action} // Use actionlink here
-                        className="flex flex-row gap-2 rounded-[6px] bg-black w-max h-max py-3 px-4 text-white font-normal hover:bg-pch"
+                        className="flex flex-row gap-2 rounded-[6px] bg-[#4a90e2] w-max h-max py-3 px-4 text-white font-normal hover:bg-pch"
                     >
                         <IconPlus />
-                        <span>Add Product</span>
+                        <span>Ajouter Document</span>
                     </a>
                 ) : null}
             </div>

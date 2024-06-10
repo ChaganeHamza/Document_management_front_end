@@ -15,7 +15,7 @@ const SalesOrders = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://localhost:44330/api/getSalesOrders');
+                const response = await axios.get('https://localhost:44330/api/getSalesReturns');
                 setSalesOrders(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
