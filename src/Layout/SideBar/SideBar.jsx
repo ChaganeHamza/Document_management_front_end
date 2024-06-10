@@ -1,9 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import SideBarItem from "../Components/SideBarItem";
 import { IconDashboard, IconShoppingCartCheck, IconShoppingCartExclamation, IconTruckDelivery, IconShoppingCart, IconArchive, IconLogout, IconClipboard, IconSettings, IconBell, } from '@tabler/icons-react';
 import logo from "./logopng.png";
+import { useNavigate, useLocation } from 'react-router-dom';
+
+
+
 
 const SideBar = () => {
+    const [simpleStyle, setSimpleStyle] = useState(
+        " my-6 ml-6 text-gray-500 hover:text-pc duration-300 text-base flex items-center "
+    );
+    const [selectStyle, setSelectStyle] = useState(
+        " my-6 ml-4 py-2 px-3 rounded w-48 text-white bg-pc duration-300 text-base flex items-center"
+    );
+
+    const navigate = useNavigate();
+    const location = useLocation(); // Use useLocation hook to get the current location
+
+
+
     return (
         <div className="bg-white border-r-[1.5px] border-r-gray-200 rounded-40 p-2 shadow-csh w-64 h-[calc(100vh)] fixed top-0 left-0 flex flex-col justify-between">
             <div>
@@ -13,7 +29,7 @@ const SideBar = () => {
                 <SideBarItem
                     icon={<IconDashboard stroke={1.5}/>}
                     text="Dashboard"
-                    href={'/dashboard'}
+                    href={'/'}
                 />
                 <SideBarItem
                     icon={<IconClipboard stroke={1.5}/>}

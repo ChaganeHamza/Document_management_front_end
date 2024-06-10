@@ -23,7 +23,7 @@ function App() {
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/" element={<MainContent Title={'Dashboard'} Content={<Dashboard />} />} />
+                    <Route path="/" element={<Dashboard />} />
                     <Route path="/document" element={<MainContent Title={'Document'} Content={<Document />} />} />
                     <Route path="/salesorders" element={<MainContent Title={'Commandes de vente'} Content={<SalesOrders />} />} />
                     <Route path="/purchaseorders" element={<MainContent Title={'Commandes Achat'} Content={<PurchaseOrders />} />} />

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TablePages from '../../Layout/Components/TablePages';
+import { useNavigate } from 'react-router-dom';
+
 
 const SalesReturns = (props) => {
     const columns = ['Numéro document', 'Code client', 'Nom client', 'Date document', 'Total document', 'Action'];
     const attributs = ['DocNum', 'CardCode', 'CardName', 'DocDate', 'DocTotal'];
+
+    const navigate = useNavigate();
 
     const [SalesReturns, setSalesReturns] = useState([]);
 
@@ -23,14 +27,19 @@ const SalesReturns = (props) => {
 
     const handleView = (id) => {
         console.log("View", id);
+        navigate(`/viewdocument/${id}`);
     };
 
     const handleEdit = (id) => {
         console.log("Edit", id);
+        navigate(`/editdocument/${id}`);
+
     };
 
     const handleDelete = (id) => {
         console.log("Delete", id);
+        navigate(`/deletedocument/${id}`);
+
     };
 
     return (
@@ -43,6 +52,7 @@ const SalesReturns = (props) => {
                 onEdit={handleEdit} 
                 onDelete={handleDelete} 
                 buttons={[{ view: true, edit: true, delete: true }]} 
+                table = {'ORDR'}
             />
         </div>
     );

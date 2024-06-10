@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { IconSearch } from '@tabler/icons-react';
-import ViewButton from './ViewButton';  // Assurez-vous d'importer ces composants
+import ViewButton from './ViewButton';  
 import ModifyButton from './ModifyButton';
 import DeleteButton from './DeleteButton';
 import { useNavigate } from 'react-router-dom';
 
-const TablePages = ({ columns, data, attributs, buttons }) => {
+const TablePages = ({ columns, data, attributs, buttons, table }) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const navigate = useNavigate();  // Initialisation de navigate
+    const navigate = useNavigate();
 
     const filteredData = data.filter((row) => {
         return Object.values(row).some((value) => {
@@ -17,7 +17,8 @@ const TablePages = ({ columns, data, attributs, buttons }) => {
     });
 
     const handleView = (id) => {
-        navigate(`/viewdocument/${id}`);  // Naviguer vers la route de détail
+        console.log("Navigating to view document with ID:", id);
+        navigate(`/viewdocument/${id}?table=${table}`);
     };
 
     const handleEdit = (id) => {
@@ -27,7 +28,6 @@ const TablePages = ({ columns, data, attributs, buttons }) => {
     const handleDelete = (id) => {
         navigate(`/deletedocument/${id}`);
     };
-    
 
     return (
         <>
@@ -64,9 +64,10 @@ const TablePages = ({ columns, data, attributs, buttons }) => {
                                     className="px-1 py-2 text-xs sm:text-sm md:text-base whitespace-nowrap">{row[attribut]}</td>
                             ))}
                             <td className="flex flex-row gap-2 py-4 whitespace-nowrap ml-2">
-                                {buttons[0].view && <ViewButton onClick={() => handleView(row.id)} />}
-                                {buttons[0].edit && <ModifyButton onClick={() => handleEdit(row.id)} />}
-                                {buttons[0].delete && <DeleteButton onClick={() => handleDelete(row.id)} />}
+                                {console.log(row.Id)}
+                                {buttons[0].view && <ViewButton onClick={() => handleView(row.Id)} />}
+                                {buttons[0].edit && <ModifyButton onClick={() => handleEdit(row.Id)} />}
+                                {buttons[0].delete && <DeleteButton onClick={() => handleDelete(row.Id)} />}
                             </td>
                         </tr>
                     ))}
