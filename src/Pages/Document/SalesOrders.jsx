@@ -3,20 +3,20 @@ import axios from 'axios';
 import TablePages from '../../Layout/Components/TablePages';
 import { useNavigate } from 'react-router-dom';
 
-
-const SalesReturns = (props) => {
-    const columns = ['Numéro document', 'Code client', 'Nom client', 'Date document', 'Total document', 'Action'];
-    const attributs = ['DocNum', 'CardCode', 'CardName', 'DocDate', 'DocTotal'];
+const SalesOrders = (props) => {
 
     const navigate = useNavigate();
 
-    const [SalesReturns, setSalesReturns] = useState([]);
+    const [SalesOrders, setSalesOrders] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://localhost:44330/api/getSalesReturns');
-                setSalesReturns(response.data);
+                const response = await axios.get('https://localhost:44330/api/getSalesOrders');
+                const translatedSalesOrders = response.data.map(order => ({
+                    ...order,
+                }));
+                setSalesOrders(translatedSalesOrders);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -33,29 +33,25 @@ const SalesReturns = (props) => {
     const handleEdit = (id) => {
         console.log("Edit", id);
         navigate(`/editdocument/${id}`);
-
     };
 
     const handleDelete = (id) => {
         console.log("Delete", id);
         navigate(`/deletedocument/${id}`);
-
     };
 
     return (
         <div className="w-full border p-1 rounded-lg overflow-auto">
             <TablePages 
-                columns={columns} 
-                data={SalesReturns} 
-                attributs={attributs} 
+                data={SalesOrders} 
                 onView={handleView} 
                 onEdit={handleEdit} 
                 onDelete={handleDelete} 
                 buttons={[{ view: true, edit: true, delete: true }]} 
-                table = {'ORDR'}
+                table={'ORDR'}
             />
         </div>
     );
 };
 
-export default SalesReturns;
+export default SalesOrders;

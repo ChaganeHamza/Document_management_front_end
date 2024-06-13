@@ -3,12 +3,11 @@ import axios from 'axios';
 import TablePages from '../../Layout/Components/TablePages';
 import { useNavigate } from 'react-router-dom';
 
-
 const PurchaseOrders = (props) => {
-    const columns = ['Numéro document', 'Code client', 'Nom client', 'Date document', 'Total document', 'Action'];
-    const attributs = ['DocNum', 'CardCode', 'CardName', 'DocDate', 'DocTotal'];
+
 
     const navigate = useNavigate();
+
 
 
     const [PurchaseOrders, setPurchaseOrders] = useState([]);
@@ -17,7 +16,11 @@ const PurchaseOrders = (props) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://localhost:44330/api/getPurchaseOrders');
-                setPurchaseOrders(response.data);
+                const translatedPurchaseOrders = response.data.map(order => ({
+                    ...order,
+                    
+                }));
+                setPurchaseOrders(translatedPurchaseOrders);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -28,7 +31,7 @@ const PurchaseOrders = (props) => {
 
     const handleView = (id) => {
         console.log("View", id);
-        navigate(`/viewdocument/${id}`);  // Assurez-vous que l'ID est correct ici
+        navigate(`/viewdocument/${id}`);
     };
 
     const handleEdit = (id) => {
@@ -44,13 +47,12 @@ const PurchaseOrders = (props) => {
     return (
         <div className="w-full border p-1 rounded-lg overflow-auto">
             <TablePages 
-                columns={columns} 
-                data={PurchaseOrders} 
-                attributs={attributs} 
-                buttons={[{ view: true, edit: true, delete: true }]} 
+                data={PurchaseOrders}  
                 onView={handleView} 
                 onEdit={handleEdit} 
                 onDelete={handleDelete} 
+                buttons={[{ view: true, edit: true, delete: true }]} 
+                table={'OPOR'}
             />
         </div>
     );

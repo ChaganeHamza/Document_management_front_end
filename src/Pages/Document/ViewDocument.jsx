@@ -26,8 +26,14 @@ const ViewDocument = () => {
                 return;
             }
 
+            if (!table) {
+                setError("Table parameter is missing.");
+                setLoading(false);
+                return;
+            }
+
             try {
-                const url = `https://localhost:44330/api/getDocumentById?id=ORDR${id}`;
+                const url = `https://localhost:44330/api/getDocumentById?id=${table}${id}`;
                 console.log('Fetching URL:', url);
                 const response = await axios.get(url);
                 const contentType = response.headers['content-type'];
@@ -56,7 +62,7 @@ const ViewDocument = () => {
         };
 
         fetchViewDocument();
-    }, [id, location.search]);
+    }, [id, table]); // Ajout de 'table' à la liste des dépendances
 
     if (loading) {
         return (
@@ -134,7 +140,6 @@ const ViewDocument = () => {
                             <p><strong>Afficher SCN:</strong> {document.ShowSCN}</p>
                             <p><strong>Carte Parent:</strong> {document.FatherCard}</p>
                             <p><strong>Taux de Change Système:</strong> {document.SysRate?.toFixed(2)}</p>
-                            <p><strong>Source de Devise:</strong> {document.CurSource}</p>
                         </div>
                         <div className="space-y-2">
                             <p><strong>Somme de TVA Sy:</strong> {document.VatSumSy?.toFixed(2)}</p>

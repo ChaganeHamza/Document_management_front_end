@@ -3,20 +3,22 @@ import axios from 'axios';
 import TablePages from '../../Layout/Components/TablePages';
 import { useNavigate } from 'react-router-dom';
 
-
-const SalesOrders = (props) => {
-    const columns = ['Numéro document', 'Code client', 'Nom client', 'Date document', 'Total document', 'Action'];
-    const attributs = ['DocNum', 'CardCode', 'CardName', 'DocDate', 'DocTotal'];
+const SalesReturns = (props) => {
 
     const navigate = useNavigate();
 
-    const [SalesOrders, setSalesOrders] = useState([]);
+
+    const [SalesReturns, setSalesReturns] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://localhost:44330/api/getSalesReturns');
-                setSalesOrders(response.data);
+                const translatedSalesReturns = response.data.map(order => ({
+                    ...order,
+
+                }));
+                setSalesReturns(translatedSalesReturns);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -27,7 +29,7 @@ const SalesOrders = (props) => {
 
     const handleView = (id) => {
         console.log("View", id);
-        navigate(`/viewdocument/${id}`);  // Assurez-vous que l'ID est correct ici
+        navigate(`/viewdocument/${id}`);
     };
 
     const handleEdit = (id) => {
@@ -43,16 +45,15 @@ const SalesOrders = (props) => {
     return (
         <div className="w-full border p-1 rounded-lg overflow-auto">
             <TablePages 
-                columns={columns} 
-                data={SalesOrders} 
-                attributs={attributs} 
+                data={SalesReturns} 
                 onView={handleView} 
                 onEdit={handleEdit} 
                 onDelete={handleDelete} 
                 buttons={[{ view: true, edit: true, delete: true }]} 
+                table={'ORIN'}
             />
         </div>
     );
 };
 
-export default SalesOrders;
+export default SalesReturns;
