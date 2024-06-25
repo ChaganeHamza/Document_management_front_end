@@ -16,7 +16,7 @@ const MainContent = (props) =>{
                 </span>
                 {props.Action ? (
                     <a
-                        href={props.Action} // Use actionlink here
+                        href={props.ActionLink} // Use actionlink here
                         className="flex flex-row gap-2 rounded-[6px] bg-[#4a90e2] w-max h-max py-3 px-4 text-white font-normal hover:bg-pch"
                     >
                         <IconPlus />

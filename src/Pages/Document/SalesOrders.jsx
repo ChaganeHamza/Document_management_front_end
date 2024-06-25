@@ -5,16 +5,20 @@ import { useNavigate } from 'react-router-dom';
 
 const SalesOrders = (props) => {
 
+
     const navigate = useNavigate();
+
+
 
     const [SalesOrders, setSalesOrders] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://localhost:44330/api/getSalesOrders');
+                const response = await axios.get('http://localhost:5197/api/sap/getSalesOrders');
                 const translatedSalesOrders = response.data.map(order => ({
                     ...order,
+                    
                 }));
                 setSalesOrders(translatedSalesOrders);
             } catch (error) {
@@ -43,7 +47,7 @@ const SalesOrders = (props) => {
     return (
         <div className="w-full border p-1 rounded-lg overflow-auto">
             <TablePages 
-                data={SalesOrders} 
+                data={SalesOrders}  
                 onView={handleView} 
                 onEdit={handleEdit} 
                 onDelete={handleDelete} 

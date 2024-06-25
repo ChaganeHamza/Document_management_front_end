@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { IconSearch } from '@tabler/icons-react';
-import ViewButton from './ViewButton';  
+import ViewButton from './ViewButton';
 import ModifyButton from './ModifyButton';
 import DeleteButton from './DeleteButton';
 import { useNavigate } from 'react-router-dom';
 
-const TablePages = ({  data, buttons, table }) => {
+const TablePages = ({ data, buttons, table }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filterState, setFilterState] = useState('');
     const navigate = useNavigate();
 
     const columns = ['Numéro document', 'Code client', 'Nom client', 'Date document', 'Total document', 'Status', 'Action'];
-    const attributs = ['DocNum', 'CardCode', 'CardName', 'DocDate', 'DocTotal', 'Status'];
+    const attributs = ['docNum', 'cardCode', 'cardName', 'docDate', 'docTotal', 'status'];
 
     const filteredData = data.filter((row) => {
         const matchesSearch = Object.values(row).some((value) => {
@@ -19,12 +19,10 @@ const TablePages = ({  data, buttons, table }) => {
             return value.toString().toLowerCase().includes(searchTerm.toLowerCase());
         });
 
-        const matchesFilter = filterState === '' || row.Status === filterState;
+        const matchesFilter = filterState === '' || row.status === filterState;
 
         return matchesSearch && matchesFilter;
     });
-
-   // const selectedStyle = 'text-pc-300 text-pc border-[2px] border-pc hover:bg-indigo-100';
 
     const mapStatusToFrench = (status) => {
         switch (status) {
@@ -41,23 +39,23 @@ const TablePages = ({  data, buttons, table }) => {
           default:
             return status;
         }
-      };
-      
+    };
 
     const handleView = (id) => {
         console.log("Navigating to view document with ID:", id);
         navigate(`/viewdocument/${id}?table=${table}`);
     };
 
+
     const handleEdit = (id) => {
-        navigate(`/editdocument/${id}`);
+        navigate(`/editdocument/${id}?table=${table}`);
     };
-
+  
     const handleDelete = (id) => {
-        navigate(`/deletedocument/${id}`);
+        navigate(`/deletedocument/${id}?table=${table}`);
     };
 
-    return (
+    return(
         <>
             <div className='flex flex-row justify-between p-4'>
                 <div className='w-1/2 flex flex-row items-center'>
@@ -74,18 +72,18 @@ const TablePages = ({  data, buttons, table }) => {
                         />
                     </div>
                 </div>
-                        <select
-                        value={filterState}
-                        onChange={(e) => setFilterState(e.target.value)}
-                        className="outline-none text-pc p-2 border font-semibold border-pc rounded-lg "
-                    >
-                        <option value="">Tous les Status</option>
-                        <option value="O">Ouvert</option>
-                        <option value="C">Fermé</option>
-                        <option value="R">Libéré</option>
-                        <option value="D">Brouillon</option>
-                        <option value="A">Annulé</option>
-                    </select>
+                <select
+                    value={filterState}
+                    onChange={(e) => setFilterState(e.target.value)}
+                    className="outline-none text-pc p-2 border font-semibold border-pc rounded-lg"
+                >
+                    <option value="">Tous les Status</option>
+                    <option value="O">Ouvert</option>
+                    <option value="C">Fermé</option>
+                    <option value="R">Libéré</option>
+                    <option value="D">Brouillon</option>
+                    <option value="A">Annulé</option>
+                </select>
             </div>
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50 rounded-xl">
@@ -104,10 +102,9 @@ const TablePages = ({  data, buttons, table }) => {
                                     className="px-1 py-2 text-xs sm:text-sm md:text-base whitespace-nowrap">{mapStatusToFrench(row[attribut])}</td>
                             ))}
                             <td className="flex flex-row gap-2 py-4 whitespace-nowrap ml-2">
-                                {console.log(row.Id)}
-                                {buttons[0].view && <ViewButton onClick={() => handleView(row.Id)} />}
-                                {buttons[0].edit && <ModifyButton onClick={() => handleEdit(row.Id)} />}
-                                {buttons[0].delete && <DeleteButton onClick={() => handleDelete(row.Id)} />}
+                                {buttons[0].view && <ViewButton onClick={() => handleView(row.id)} />}
+                                {buttons[0].edit && <ModifyButton onClick={() => handleEdit(row.id)} />}
+                                {buttons[0].delete && <DeleteButton onClick={() => handleDelete(row.id)} />}
                             </td>
                         </tr>
                     ))}

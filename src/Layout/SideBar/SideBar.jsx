@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import SideBarItem from "../Components/SideBarItem";
-import { IconDashboard, IconShoppingCartCheck, IconShoppingCartExclamation, IconTruckDelivery, IconShoppingCart, IconArchive, IconLogout, IconClipboard, IconSettings, IconBell, } from '@tabler/icons-react';
+import { IconDashboard, IconShoppingCartCheck, IconShoppingCartExclamation, IconTruckDelivery, IconShoppingCart, IconLogout, IconClipboard, IconSettings, IconBell, } from '@tabler/icons-react';
 import logo from "./logopng.png";
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ const SideBar = () => {
                 <SideBarItem
                     icon={<IconDashboard stroke={1.5}/>}
                     text="Dashboard"
-                    href={'/'}
+                    href={'/dashboard'}
                 />
                 <SideBarItem
                     icon={<IconClipboard stroke={1.5}/>}
@@ -56,11 +56,7 @@ const SideBar = () => {
                     text="Livraisons"
                     href={'/deliveries'}
                 />
-                <SideBarItem
-                    icon={<IconArchive stroke={1.5}/>}
-                    text="Archive"
-                    href={'/archive'}
-                />
+
                 <SideBarItem
                     icon={<IconBell stroke={1.5}/>}
                     text="Notifications"

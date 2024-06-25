@@ -15,7 +15,7 @@ const PurchaseOrders = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://localhost:44330/api/getPurchaseOrders');
+                const response = await axios.get('http://localhost:5197/api/sap/getPurchaseOrders');
                 const translatedPurchaseOrders = response.data.map(order => ({
                     ...order,
                     

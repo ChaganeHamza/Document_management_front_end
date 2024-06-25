@@ -13,7 +13,7 @@ const SalesReturns = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://localhost:44330/api/getSalesReturns');
+                const response = await axios.get('http://localhost:5197/api/sap/getSalesReturns');
                 const translatedSalesReturns = response.data.map(order => ({
                     ...order,
 
@@ -50,7 +50,7 @@ const SalesReturns = (props) => {
                 onEdit={handleEdit} 
                 onDelete={handleDelete} 
                 buttons={[{ view: true, edit: true, delete: true }]} 
-                table={'ORIN'}
+                table={'ORDN'}
             />
         </div>
     );
